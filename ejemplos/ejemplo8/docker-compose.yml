@@ -1,0 +1,15 @@
+services:
+  db:
+    image: ankane/pgvector:latest
+    hostname: postgres
+    container_name: postgres
+    pull_policy: always
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456789
+      - POSTGRES_DB=expoisp
+    volumes:
+      - ./db:/var/lib/postgresql/data

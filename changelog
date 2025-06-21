@@ -1,0 +1,41 @@
+commit d7c74ec6d449d86954a7828534d1bcbdb88e0463 (HEAD -> main, origin/main)
+Author: Jesus Palencia <sinfallas@gmail.com>
+Date:   Fri Jun 20 19:13:37 2025 -0400
+
+    * cambio de proporcion
+
+commit aeb3a47ad81c1d67c36deac85af6331534024ce4
+Author: Jesus Palencia <sinfallas@gmail.com>
+Date:   Thu Jun 19 20:09:38 2025 -0400
+
+    * changelog
+
+commit c7021c8b6c985a9b03f0383286575cec1d000bd9
+Author: Jesus Palencia <sinfallas@gmail.com>
+Date:   Thu Jun 19 20:09:26 2025 -0400
+
+    * pgvector
+
+commit f2121940d9e64208f713b0802fd7e215eceededc
+Author: Jesus Palencia <sinfallas@gmail.com>
+Date:   Thu Jun 19 19:05:57 2025 -0400
+
+    * changelog
+
+commit dc4fd9593a39981c96ab39d9e212d48c9a1fcb26
+Author: Jesus Palencia <sinfallas@gmail.com>
+Date:   Thu Jun 19 19:05:50 2025 -0400
+
+    * leeme
+
+commit a9bc0949a3fc71fd4a94fdde8660eff771304a35
+Author: Jesus Palencia <sinfallas@gmail.com>
+Date:   Thu Jun 19 18:56:27 2025 -0400
+
+    * changelog
+
+commit 2261dd54303885411516e145fd83d1a3d9598424
+Author: Jesus Palencia <sinfallas@gmail.com>
+Date:   Thu Jun 19 18:55:43 2025 -0400
+
+    * primer commit

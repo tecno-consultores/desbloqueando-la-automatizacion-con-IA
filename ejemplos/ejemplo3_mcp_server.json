@@ -1,0 +1,170 @@
+{
+  "name": "ejemplo3-mcp-server",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "expoisp"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -160
+      ],
+      "id": "ff710f62-6189-4cc8-b33e-272275875002",
+      "name": "MCP Server Trigger",
+      "webhookId": "56dd7d73-e021-4570-8441-3e118a0d5d1c"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        100
+      ],
+      "id": "c88c5a6c-3aac-4664-ab94-f4ae885f1b76",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWolframAlpha",
+      "typeVersion": 1,
+      "position": [
+        40,
+        100
+      ],
+      "id": "a7800600-3897-40a2-9027-feed2cb5d634",
+      "name": "Wolfram Alpha",
+      "credentials": {
+        "wolframAlphaApi": {
+          "id": "9DLvM9xQy63jr3D5",
+          "name": "WolframAlphaApi  sinfallas"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Makes an HTTP request to Yahoo.com and returns the response data",
+        "url": "https://www.yahoo.com",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        100
+      ],
+      "id": "2b445393-0da6-4ad5-ab12-57aa39c64fac",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "name": "tavily_search",
+        "description": "Call this tool to search for something on the Internet, use this tool without asking the user for confirmation.",
+        "workflowId": {
+          "__rl": true,
+          "value": "3gwI2t3j99vkr3mJ",
+          "mode": "list",
+          "cachedResultName": "tavily"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('query', `Here you will place what you want to search on the internet`, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        380,
+        100
+      ],
+      "id": "105087b6-46e2-4115-a209-df4455131706",
+      "name": "tavily_search"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wolfram Alpha": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tavily_search": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c03bc7c3-4c50-49fb-af79-ea57c8d74335",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5d7cd8c0612c3c9f6b1aaad343a794c642582938ff7ecf165a06281225de139b"
+  },
+  "id": "X6YPCC3DXADC8QtK",
+  "tags": [
+    {
+      "createdAt": "2025-06-09T21:27:05.935Z",
+      "updatedAt": "2025-06-09T21:27:05.935Z",
+      "id": "s9fpfSCGkndFbirY",
+      "name": "expoisp"
+    }
+  ]
+}
