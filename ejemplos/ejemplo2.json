@@ -1,5 +1,5 @@
 {
-  "name": "ejemplo2",
+  "name": "ejemplo 1",
   "nodes": [
     {
       "parameters": {
@@ -8,26 +8,26 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -200,
-        -80
+        0,
+        0
       ],
-      "id": "185405ac-7d01-44a5-b9a2-aba95dcd6111",
+      "id": "5e22ee95-98b8-4464-a6f7-94318d6957e4",
       "name": "When chat message received",
       "webhookId": "63ae93ae-1b55-4bbd-afd9-1b2ed3944240"
     },
     {
       "parameters": {
         "options": {
-          "systemMessage": "=You are a helpful assistant\n\nUse the mikrotik_api tool to connect to the Mikrotik router that provides your internet connection. When using this tool, do not request username, password, or IP, they are preconfigured. Pass the parameters as follows: \n\n* Resource: here you put the location of the resource, example: /tool/netwatch\n* Operation: Here you put the actions you want to do, example: print\n\nYou can use the parameters in this example to know the status of your internet connections."
+          "systemMessage": "=You are a helpful assistant\n\nYou can only communicate in Spanish\n\nUse the mikrotik_api tool to connect to the Mikrotik router that provides your internet connection. When using this tool, do not request username, password, or IP, they are preconfigured.\n\nWhen the user asks you for the recent logs, execute /log print where (([:timestamp]+([/system clock get gmt-offset].\"s\"))-[:totime (time)]) <= 5m"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        20,
-        -80
+        220,
+        0
       ],
-      "id": "3d7d31ec-e944-4447-9ed7-5a5d77e6828e",
+      "id": "b7cd60ed-d694-4d82-a36b-55c9be627470",
       "name": "AI Agent"
     },
     {
@@ -38,50 +38,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -80,
-        160
+        160,
+        260
       ],
-      "id": "9ee99ac1-1de5-4f19-a034-8381899b8c50",
+      "id": "a15651f7-db02-48d2-bdfd-d902cd170f1c",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
           "id": "xymrryv6wbWhYNOd",
           "name": "Google Gemini(PaLM) Api account sinfallas"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "contextWindowLength": 50
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
-      "position": [
-        120,
-        160
-      ],
-      "id": "f8212e64-16bc-43f6-9820-f4c64d862be1",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {
-        "descriptionType": "manual",
-        "toolDescription": "use this tool to send a notification to all my devices in the form of a small text note with its title",
-        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}",
-        "body": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Body', ``, 'string') }}"
-      },
-      "type": "n8n-nodes-base.pushbulletTool",
-      "typeVersion": 1,
-      "position": [
-        480,
-        160
-      ],
-      "id": "a8002380-18fc-4eec-be1a-db5a42e9ba9c",
-      "name": "Pushbullet",
-      "credentials": {
-        "pushbulletOAuth2Api": {
-          "id": "pl1XW2vXX2m84Ca3",
-          "name": "Pushbullet  sinfallas"
         }
       }
     },
@@ -98,28 +63,21 @@
         "workflowInputs": {
           "mappingMode": "defineBelow",
           "value": {
-            "Resource": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Resource', `here you put the location of the resource, example: /tool/netwatch`, 'string') }}",
-            "Operation": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Operation', `Here you put the actions you want to do, example: print`, 'string') }}"
+            "command": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('command', ``, 'string') }}"
           },
-          "matchingColumns": [],
+          "matchingColumns": [
+            "command"
+          ],
           "schema": [
             {
-              "id": "Resource",
-              "displayName": "Resource",
+              "id": "command",
+              "displayName": "command",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "canBeUsedToMatch": true,
-              "type": "string"
-            },
-            {
-              "id": "Operation",
-              "displayName": "Operation",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "string"
+              "type": "string",
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
@@ -129,10 +87,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.1,
       "position": [
-        300,
-        160
+        420,
+        260
       ],
-      "id": "b67d32bd-e740-47b6-b695-2c765f635616",
+      "id": "f72cd2c5-ac85-42e6-9669-ddcb48293dbd",
       "name": "mikrotik_api"
     }
   ],
@@ -160,28 +118,6 @@
         ]
       ]
     },
-    "Simple Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Pushbullet": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "mikrotik_api": {
       "ai_tool": [
         [
@@ -196,14 +132,14 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
   },
-  "versionId": "d135658f-1df2-43b9-ae8c-2a589a6582de",
+  "versionId": "56f9d48a-a527-4f0a-9361-5c738e49fd0b",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "5d7cd8c0612c3c9f6b1aaad343a794c642582938ff7ecf165a06281225de139b"
   },
-  "id": "6d5mdmRG4ypH9zlU",
+  "id": "v4ZLiWBZja7mHXz7",
   "tags": [
     {
       "createdAt": "2025-06-09T21:27:05.935Z",
